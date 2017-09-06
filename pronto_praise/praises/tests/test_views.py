@@ -32,3 +32,16 @@ class PraiseListView(TestCase):
 
         expected = '<h1 class="ui header">Praise</h1>'
         self.assertContains(response, expected, status_code=200)
+
+    def test_praise_list_view_should_have_praise_with_info_as_expected(self):
+        response = self.client.get(reverse('praise_list'))
+
+        expected = '<div class="praise"><div class="praise-body">' \
+            '<h3>Mils</h3><div><p>Listen and speak with care!</p></div>' \
+            '</div><strong>zkan</strong><br />Sep 1, 2016'
+        self.assertContains(response, expected, status_code=200)
+
+        expected = '<div class="praise"><div class="praise-body"><h3>' \
+            'P\'Kan</h3><div><p>Cool and handsome!</p></div></div>' \
+            '<strong>Mils</strong><br />Sep 6, 2016'
+        self.assertContains(response, expected, status_code=200)
