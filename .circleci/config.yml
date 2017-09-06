@@ -68,7 +68,7 @@ jobs:
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:PFBY/vsdxe/e4uclGYaRwWuk0/AeYZGi/3RWv46D56s zkan@Kans-MacBook-Pro.local"
+            - "10:0d:0f:9c:e3:62:f0:d7:f6:13:93:ed:7f:27:07:b3"
       - deploy:
           name: Deploy Master to Heroku
           command: |
