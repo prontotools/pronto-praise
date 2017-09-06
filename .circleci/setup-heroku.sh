@@ -2,7 +2,7 @@
 
 # Credit: https://circleci.com/docs/2.0/deployment_integrations/#heroku
 
-git remote add heroku https://git.heroku.com/pronto-praise.git
+git remote add heroku https://git.heroku.com/pronto-praise-staging.git
 wget https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz
 sudo mkdir -p /usr/local/lib /usr/local/bin
 sudo tar -xvzf heroku-linux-amd64.tar.gz -C /usr/local/lib
