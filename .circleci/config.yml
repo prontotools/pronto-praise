@@ -20,15 +20,15 @@ jobs:
           at: .
       - restore_cache:
           keys:
-          - py-deps-{{ checksum "requirements.txt" }}
+          - py-deps-{{ checksum "requirements/local.txt" }}
       - run:
           name: Install Dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            pip install -r requirements/local.txt
       - save_cache:
-          key: py-deps-{{ checksum "requirements.txt" }}
+          key: py-deps-{{ checksum "requirements/local.txt" }}
           paths:
             - ./venv
 
@@ -39,7 +39,7 @@ jobs:
           at: .
       - restore_cache:
           keys:
-          - py-deps-{{ checksum "requirements.txt" }}
+          - py-deps-{{ checksum "requirements/local.txt" }}
       - run:
           name: Run Static Analysis
           command: |
@@ -54,7 +54,7 @@ jobs:
           at: .
       - restore_cache:
           keys:
-          - py-deps-{{ checksum "requirements.txt" }}
+          - py-deps-{{ checksum "requirements/local.txt" }}
       - run:
           name: Run Tests
           command: |
