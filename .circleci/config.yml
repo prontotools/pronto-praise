@@ -62,6 +62,20 @@ jobs:
             cd pronto_praise
             python manage.py test
 
+  deploy:
+    <<: *defaults
+    steps:
+      - run: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:PFBY/vsdxe/e4uclGYaRwWuk0/AeYZGi/3RWv46D56s zkan@Kans-MacBook-Pro.local"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+            fi
+
 workflows:
   version: 2
   pronto_praise_pipeline:
@@ -76,3 +90,7 @@ workflows:
       - unit_tests:
           requires:
             - python_dependencies
+      - deploy:
+          requires:
+            - static_analysis
+            - unit_tests
