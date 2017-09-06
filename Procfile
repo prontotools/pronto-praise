@@ -1,2 +1,2 @@
-release: python pronto_praise/manage.py migrate
+release: ./release-tasks.sh
 web: uwsgi heroku.ini
