@@ -26,7 +26,7 @@ SECRET_KEY = 'uhiz-_pz(es0f^&_w9b4p975cp0873572+=cmg00dzr8xa8oba'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
