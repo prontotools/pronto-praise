@@ -1,26 +1,78 @@
+defaults: &defaults
+  working_directory: ~/pronto-praise
+  docker:
+    - image: circleci/python:3.6.1
+
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/python:3.6.1
-    working_directory: ~/pronto-praise
+  checkout_code:
+    <<: *defaults
     steps:
       - checkout
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  python_dependencies:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - py-deps-{{ checksum "requirements.txt" }}
       - run:
-          name: install dependencies
+          name: Install Dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
       - save_cache:
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: py-deps-{{ checksum "requirements.txt" }}
           paths:
             - ./venv
+
+  static_analysis:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          keys:
+          - py-deps-{{ checksum "requirements.txt" }}
       - run:
-          name: run tests
+          name: Run Static Analysis
           command: |
             . venv/bin/activate
+            cd pronto_praise
+            flake8
+
+  unit_tests:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          keys:
+          - py-deps-{{ checksum "requirements.txt" }}
+      - run:
+          name: Run Tests
+          command: |
+            . venv/bin/activate
+            cd pronto_praise
             python manage.py test
+
+workflows:
+  version: 2
+  pronto_praise_pipeline:
+    jobs:
+      - checkout_code
+      - python_dependencies:
+          requires:
+            - checkout_code
+      - static_analysis:
+          requires:
+            - python_dependencies
+      - unit_tests:
+          requires:
+            - python_dependencies
