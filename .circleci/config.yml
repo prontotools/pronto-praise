@@ -65,6 +65,8 @@ jobs:
   deploy:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: .
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
