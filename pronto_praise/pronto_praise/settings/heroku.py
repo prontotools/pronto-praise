@@ -3,7 +3,8 @@ import dj_database_url
 from .base import *
 
 
-DEBUG = False
+# WhiteNoise won't work on Heroku when we set DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
