@@ -45,3 +45,15 @@ class PraiseListView(TestCase):
             'P\'Kan</h3><div><p>Cool and handsome!</p></div></div>' \
             '<strong>Mils</strong><br />Sep 6, 2016'
         self.assertContains(response, expected, status_code=200)
+
+
+class PraiseAddView(TestCase):
+    def test_praise_add_view_should_be_accessible(self):
+        response = self.client.get(reverse('praise_add'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_praise_add_view_should_have_header_saying_write_praise(self):
+        response = self.client.get(reverse('praise_add'))
+
+        expected = '<h1 class="ui header">Write your Praise :)</h1>'
+        self.assertContains(response, expected, status_code=200)

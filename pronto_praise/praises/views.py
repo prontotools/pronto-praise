@@ -10,3 +10,13 @@ class PraiseListView(TemplateView):
             request,
             self.template_name
         )
+
+
+class PraiseAddView(TemplateView):
+    template_name = 'praise_add.html'
+
+    def get(self, request):
+        return render(
+            request,
+            self.template_name
+        )
