@@ -3,7 +3,8 @@
   <div class="ui main container">
     <h1 class="ui header">Write your Praise :)</h1>
     {% spaceless %}
-    <form class="ui form">
+    <form class="ui form" method="post" action=".">
+      {% csrf_token %}
       <div class="field">
         <label>To</label>
         <input type="text" name="to" placeholder="Whom do you want to write to?">
