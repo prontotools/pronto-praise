@@ -41,7 +41,7 @@ class PraiseListView(TestCase):
             '<div class="ui items"><div class="item"><div class="extra">' \
             '<div class="ui right floated"><a href="#">' \
             '<i class="heart icon"></i></a>+ 0</div></div></div></div></div>' \
-            '<strong>zkan</strong><br />Sep 1, 2016'
+            '<strong>zkan</strong><br />Sept 1, 2016'
         self.assertContains(response, expected, status_code=200)
 
         expected = '<div class="praise"><div class="praise-body">' \
@@ -49,7 +49,7 @@ class PraiseListView(TestCase):
             '<div class="ui items"><div class="item"><div class="extra">' \
             '<div class="ui right floated"><a href="#">' \
             '<i class="heart icon"></i></a>+ 2</div></div></div></div></div>' \
-            '<strong>Mils</strong><br />Sep 6, 2016'
+            '<strong>Mils</strong><br />Sept 6, 2016'
         self.assertContains(response, expected, status_code=200)
 
 
