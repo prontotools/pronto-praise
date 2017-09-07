@@ -57,3 +57,17 @@ class PraiseAddView(TestCase):
 
         expected = '<h1 class="ui header">Write your Praise :)</h1>'
         self.assertContains(response, expected, status_code=200)
+
+    def test_praise_add_view_should_have_write_praise_form(self):
+        response = self.client.get(reverse('praise_add'))
+
+        expected = '<form class="ui form">' \
+            '<div class="field"><label>To</label>' \
+            '<input type="text" name="to" ' \
+            'placeholder="Whom do you want to write to?"></div>' \
+            '<div class="field"><label>By</label>' \
+            '<input type="text" name="by" placeholder="Pim Ch"></div>' \
+            '<div class="field"><label>Description</label>' \
+            '<textarea></textarea></div>' \
+            '<button class="ui button" type="submit">Submit</button></form>'
+        self.assertContains(response, expected, status_code=200)

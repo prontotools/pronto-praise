@@ -2,5 +2,22 @@
 {% block body %}
   <div class="ui main container">
     <h1 class="ui header">Write your Praise :)</h1>
+    {% spaceless %}
+    <form class="ui form">
+      <div class="field">
+        <label>To</label>
+        <input type="text" name="to" placeholder="Whom do you want to write to?">
+      </div>
+      <div class="field">
+        <label>By</label>
+        <input type="text" name="by" placeholder="Pim Ch">
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea></textarea>
+      </div>
+      <button class="ui button" type="submit">Submit</button>
+    </form>
+    {% endspaceless %}
   </div>
 {% endblock %}
