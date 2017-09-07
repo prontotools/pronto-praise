@@ -9,5 +9,6 @@ class PraiseAdmin(admin.ModelAdmin):
         'to',
         'by',
         'description',
+        'number_of_hearts',
         'created',
     )
