@@ -77,5 +77,5 @@ class PraiseAddView(TestCase):
         expected = '<textarea></textarea>'
         self.assertContains(response, expected, status_code=200)
 
-        expected= '<button class="ui button" type="submit">Submit</button>'
+        expected = '<button class="ui button" type="submit">Submit</button>'
         self.assertContains(response, expected, status_code=200)
