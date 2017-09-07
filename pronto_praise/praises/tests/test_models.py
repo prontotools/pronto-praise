@@ -19,4 +19,5 @@ class PraiseTest(TestCase):
             praise.description,
             'Great work! Thanks for your patience.'
         )
+        self.assertEqual(praise.number_of_hearts, 0)
         self.assertTrue(praise.created)

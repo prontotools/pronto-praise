@@ -28,5 +28,9 @@ class PraiseAdminTest(TestCase):
         expected = '<div class="text"><a href="?o=3">Description</a></div>'
         self.assertContains(response, expected, count=1, status_code=200)
 
-        expected = '<div class="text"><a href="?o=4">Created</a></div>'
+        expected = '<div class="text">' \
+            '<a href="?o=4">Number of hearts</a></div>'
+        self.assertContains(response, expected, count=1, status_code=200)
+
+        expected = '<div class="text"><a href="?o=5">Created</a></div>'
         self.assertContains(response, expected, count=1, status_code=200)
