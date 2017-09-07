@@ -38,11 +38,17 @@ class PraiseListView(TestCase):
 
         expected = '<div class="praise"><div class="praise-body">' \
             '<h3>Mils</h3><div><p>Listen and speak with care!</p></div>' \
-            '</div><strong>zkan</strong><br />Sep 1, 2016'
+            '<div class="ui items"><div class="item"><div class="extra">' \
+            '<div class="ui right floated"><a href="#">' \
+            '<i class="heart icon"></i></a>+ 0</div></div></div></div></div>' \
+            '<strong>zkan</strong><br />Sep 1, 2016'
         self.assertContains(response, expected, status_code=200)
 
-        expected = '<div class="praise"><div class="praise-body"><h3>' \
-            'P\'Kan</h3><div><p>Cool and handsome!</p></div></div>' \
+        expected = '<div class="praise"><div class="praise-body">' \
+            '<h3>P\'Kan</h3><div><p>Cool and handsome!</p></div>' \
+            '<div class="ui items"><div class="item"><div class="extra">' \
+            '<div class="ui right floated"><a href="#">' \
+            '<i class="heart icon"></i></a>+ 2</div></div></div></div></div>' \
             '<strong>Mils</strong><br />Sep 6, 2016'
         self.assertContains(response, expected, status_code=200)
 
