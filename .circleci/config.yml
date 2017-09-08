@@ -78,7 +78,7 @@ jobs:
               git push heroku develop:master
             fi
 
-  deploy:
+  deploy_to_staging:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -112,6 +112,7 @@ workflows:
           requires:
             - static_analysis
             - unit_tests
-      - deploy:
+      - deploy_to_staging:
           requires:
-            - deploy_to_dev
+            - static_analysis
+            - unit_tests
