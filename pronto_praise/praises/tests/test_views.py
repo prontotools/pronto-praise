@@ -52,6 +52,13 @@ class PraiseListView(TestCase):
             '<strong>Mils</strong><br />Sept 6, 2016'
         self.assertContains(response, expected, status_code=200)
 
+    def test_praise_list_view_should_have_add_button(self):
+        response = self.client.get(reverse('praise_list'))
+        expected = '<a href="/add" class="ui basic button' \
+            '  right floated" ><i class="icon plus"></i>\n' \
+            '          Praise Someone\n      </a>'
+        self.assertContains(response, expected, status_code=200)
+
 
 class PraiseAddView(TestCase):
     def test_praise_add_view_should_be_accessible(self):
