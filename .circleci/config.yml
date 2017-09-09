@@ -62,7 +62,23 @@ jobs:
             cd pronto_praise
             python manage.py test
 
-  deploy:
+  deploy_to_dev:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: bash .circleci/setup-heroku-dev.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "10:0d:0f:9c:e3:62:f0:d7:f6:13:93:ed:7f:27:07:b3"
+      - deploy:
+          name: Deploy Develop to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              git push heroku develop:master
+            fi
+
+  deploy_to_staging:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -92,7 +108,11 @@ workflows:
       - unit_tests:
           requires:
             - python_dependencies
-      - deploy:
+      - deploy_to_dev:
+          requires:
+            - static_analysis
+            - unit_tests
+      - deploy_to_staging:
           requires:
             - static_analysis
             - unit_tests
