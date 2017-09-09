@@ -37,7 +37,10 @@ class PraiseListView(TestCase):
         response = self.client.get(reverse('praise_list'))
 
         expected = '<div class="praise"><div class="praise-body">' \
-            '<h3>Mils</h3><div><p>Listen and speak with care!</p></div>' \
+            '<h3>Mils</h3>' \
+            '<div class="ui header icon"><img src="/static/emoji/img/angry.png" ' \
+            'alt="angry" title="angry" class="emoji"></div>' \
+            '<div><p>Listen and speak with care!</p></div>' \
             '<div class="ui items"><div class="item"><div class="extra">' \
             '<div class="ui right floated"><a href="#">' \
             '<i class="heart icon"></i></a>+ 0</div></div></div></div></div>' \
@@ -45,7 +48,10 @@ class PraiseListView(TestCase):
         self.assertContains(response, expected, status_code=200)
 
         expected = '<div class="praise"><div class="praise-body">' \
-            '<h3>P\'Kan</h3><div><p>Cool and handsome!</p></div>' \
+            '<h3>P\'Kan</h3>' \
+            '<div class="ui header icon"><img src="/static/emoji/img/smile.png" ' \
+            'alt="smile" title="smile" class="emoji"></div>' \
+            '<div><p>Cool and handsome!</p></div>' \
             '<div class="ui items"><div class="item"><div class="extra">' \
             '<div class="ui right floated"><a href="#">' \
             '<i class="heart icon"></i></a>+ 2</div></div></div></div></div>' \
