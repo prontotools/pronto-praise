@@ -89,11 +89,20 @@ class PraiseAddView(TestCase):
         expected = '<input type="text" name="by" placeholder="Pim Ch">'
         self.assertContains(response, expected, status_code=200)
 
-        expected = '<textarea></textarea>'
+        expected = '<textarea name="description"></textarea>'
         self.assertContains(response, expected, status_code=200)
 
         expected = '<button class="ui button" type="submit">Submit</button>'
         self.assertContains(response, expected, status_code=200)
+
+    def test_praise_add_view_should_add_new_praise(self):
+        data = {
+            'to': 'Por',
+            'by': 'Poon',
+            'description': 'Think'
+        }
+        response = self.client.post(reverse('praise_add'), data=data)
+        self.assertEquals(response.status_code, 302)
 
 
 class AddHeartView(TestCase):

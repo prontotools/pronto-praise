@@ -23,6 +23,14 @@ class PraiseAddView(TemplateView):
             self.template_name
         )
 
+    def post(self, request):
+        data = request.POST.copy()
+        to = data['to']
+        by = data['by']
+        des = data['description']
+        Praise.objects.create(to=to, by=by, description=des)
+        return redirect('/')
+
 
 class PraiseAddHeart(TemplateView):
     def get(self, request, praise_id):
