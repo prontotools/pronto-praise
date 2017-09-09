@@ -108,10 +108,15 @@
   100% { -o-transform: scale(1); }  
 } 
 </style>
+{% spaceless %}
   <div class="ui main container">
+      <a href="/add" class="ui basic button  right floated" >
+          <i class="icon plus"></i>
+          Praise Someone
+      </a>
     <h1 class="ui header">Praise</h1>
+    <!-- thohirah create button yoo -->
     <div class="ui grid">
-    {% spaceless %}
       <div class="four wide column">
         <div class="praise">
           <div class="praise-body">
@@ -149,9 +154,8 @@
           <strong>Mils</strong><br />Sept 6, 2016
         </div>
       </div>
-    {% endspaceless %}
     </div>
-
+    
   </div>
 <script>
   $(".heart").click(function() {
@@ -162,4 +166,5 @@
     }
   );
 </script>
+  {% endspaceless %}
 {% endblock %}
