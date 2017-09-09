@@ -102,7 +102,7 @@ class PraiseAddView(TestCase):
             'description': 'Think'
         }
         response = self.client.post(reverse('praise_add'), data=data)
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 302)
 
 class AddHeartView(TestCase):
     def test_add_heart_should_increase_number_of_heart(self):

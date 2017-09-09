@@ -30,10 +30,7 @@ class PraiseAddView(TemplateView):
         by = data['by']
         des = data['description']
         Praise.objects.create(to=to, by=by, description=des)
-        return render(
-            request,
-            self.template_name
-        )
+        return redirect('/')
 
 
 class PraiseAddHeart(TemplateView):
