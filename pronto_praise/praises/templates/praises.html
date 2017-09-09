@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load emoji_tags %}
+
 {% block body %}
 <style>
   /* Most of the heart's CSS came from the Shapes of CSS  */
@@ -121,8 +123,13 @@
         <div class="praise">
           <div class="praise-body">
             <h3>Mils</h3>
+            <div class="ui header icon">
+                {% autoescape off %}
+                {{ ':angry:'|emoji_replace }}
+                {% endautoescape %}
+            </div>
             <div>
-              <p>Listen and speak with care!</p>
+                <p>Listen and speak with care!</p>
             </div>
             <div class="ui items">
               <div class="item">
@@ -140,8 +147,13 @@
         <div class="praise">
           <div class="praise-body">
             <h3>P'Kan</h3>
+            <div class="ui header icon">
+                {% autoescape off %}
+                {{ ':smile:'|emoji_replace }}
+                {% endautoescape %}
+            </div>
             <div>
-              <p>Cool and handsome!</p>
+                <p>Cool and handsome!</p>
             </div>
             <div class="ui items">
               <div class="item">
