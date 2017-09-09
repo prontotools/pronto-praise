@@ -30,7 +30,8 @@ class PraiseListView(TestCase):
 
     def test_praise_list_view_should_have_header_saying_praise(self):
         response = self.client.get(reverse('praise_list'))
-        expected = '<h1 class="ui header" style="display:inline-block">Praise</h1>'
+        expected = '<h1 class="ui header" ' \
+            'style="display:inline-block">Praise</h1>'
         self.assertContains(response, expected, status_code=200)
 
     def test_praise_list_view_should_have_praise_with_info_as_expected(self):
