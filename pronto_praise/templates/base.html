@@ -1,5 +1,5 @@
 {% load staticfiles %}
-<html>
+<html style="height:100%">
 <head>
   <title>Pronto Praise</title>
   <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
@@ -9,6 +9,15 @@
     crossorigin="anonymous"></script>
   <script src="{% static 'semantic/semantic.min.js' %}"></script>
   <style>
+    body{
+      min-height:100%;
+      display:grid;
+      grid-template-rows: 1fr auto;
+    }
+    footer{
+      grid-row-start:2;
+      grid-row-end:3;
+    }
     .praise .praise-body {
       border: 1px solid #dfdfdf;
       margin-bottom: 30px;
@@ -44,7 +53,7 @@
     }
   </style>
 </head>
-<body>
+<body >
   {% block body %}{% endblock %}
   <footer class="ui grey inverted vertical footer segment">
     <div class="ui centered grid ">
