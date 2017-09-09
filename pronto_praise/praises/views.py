@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-from praises.models import Praise
 
 from praises.models import Praise
 
