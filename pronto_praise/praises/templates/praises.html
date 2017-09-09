@@ -132,7 +132,7 @@
                   <div class="ui items">
                     <div class="item">
                       <div class="extra">
-                      <div class="ui right floated"><a href="#"><i class="heart icon"></i></a>+ {{ praise.number_of_hearts }}</div>
+                      <div class="ui right floated"><a href="#"><i class="heart icon" data-id="{{praise.id}}"></i></a>+ {{ praise.number_of_hearts }}</div>
                       </div>
                     </div>
                   </div>
@@ -144,12 +144,13 @@
   </div>
 <script>
   $(".heart").click(function() {
-      $(this).addClass("animated");
+      $(this).addClass("animated")
+      var id = $(this).data("id")
       setTimeout(function(){
-        window.location = "/1/heart/";
-      }, 2000);
+        window.location = "/"+id+"/heart/"
+      }, 2000)
     }
-  );
+  )
 </script>
   {% endspaceless %}
 {% endblock %}
