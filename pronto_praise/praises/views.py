@@ -24,14 +24,6 @@ class PraiseAddView(TemplateView):
             self.template_name
         )
 
-
-class PraiseAddHeart(TemplateView):
-    def get(self, request, praise_id):
-        praise = Praise.objects.get(id=praise_id)
-        praise.number_of_hearts = praise.number_of_hearts+1
-        praise.save()
-        return redirect('/')
-
     def post(self, request):
         data = request.POST.copy()
         to = data['to']
@@ -43,3 +35,10 @@ class PraiseAddHeart(TemplateView):
             self.template_name
         )
 
+
+class PraiseAddHeart(TemplateView):
+    def get(self, request, praise_id):
+        praise = Praise.objects.get(id=praise_id)
+        praise.number_of_hearts = praise.number_of_hearts+1
+        praise.save()
+        return redirect('/')
