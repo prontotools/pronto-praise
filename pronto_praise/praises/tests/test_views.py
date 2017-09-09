@@ -38,7 +38,8 @@ class PraiseListView(TestCase):
 
         expected = '<div class="praise"><div class="praise-body">' \
             '<h3>Mils</h3>' \
-            '<div class="ui header icon"><img src="/static/emoji/img/angry.png" ' \
+            '<div class="ui header icon">' \
+            '<img src="/static/emoji/img/angry.png" ' \
             'alt="angry" title="angry" class="emoji"></div>' \
             '<div><p>Listen and speak with care!</p></div>' \
             '<div class="ui items"><div class="item"><div class="extra">' \
@@ -49,7 +50,8 @@ class PraiseListView(TestCase):
 
         expected = '<div class="praise"><div class="praise-body">' \
             '<h3>P\'Kan</h3>' \
-            '<div class="ui header icon"><img src="/static/emoji/img/smile.png" ' \
+            '<div class="ui header icon">' \
+            '<img src="/static/emoji/img/smile.png" ' \
             'alt="smile" title="smile" class="emoji"></div>' \
             '<div><p>Cool and handsome!</p></div>' \
             '<div class="ui items"><div class="item"><div class="extra">' \
