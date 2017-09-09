@@ -7,7 +7,11 @@ class PraiseListView(TemplateView):
     template_name = 'praises.html'
 
     def get(self, request):
-        praises = Praise.objects.all()
+        params = request.GET
+        if params:
+            praises = Praise.objects.order_by('-number_of_hearts')
+        else:
+            praises = Praise.objects.all()
         return render(
             request,
             self.template_name,
