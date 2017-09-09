@@ -30,7 +30,6 @@ class PraiseListView(TestCase):
 
     def test_praise_list_view_should_have_header_saying_praise(self):
         response = self.client.get(reverse('praise_list'))
-
         expected = '<h1 class="ui header" style="display:inline-block">Praise</h1>'
         self.assertContains(response, expected, status_code=200)
 
@@ -62,8 +61,10 @@ class PraiseListView(TestCase):
 
     def test_praise_list_view_should_have_sort_button(self):
         response = self.client.get(reverse('praise_list'))
-        expected = '<a href= "/?banana=1" style="display:inline-block" class="ui secondary button">Sort</a>'
+        expected = '<a href= "/?banana=1" style="display:inline-block" ' \
+            'class="ui secondary button">Sort</a>'
         self.assertContains(response, expected, status_code=200)
+
 
 class PraiseAddView(TestCase):
     def test_praise_add_view_should_be_accessible(self):
