@@ -1,3 +1,4 @@
 -r base.txt
 
 flake8==3.4.1
+django-emoji==2.2.0
