@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
+from praises.models import Praise
 
 from praises.models import Praise
 
@@ -30,3 +31,15 @@ class PraiseAddHeart(TemplateView):
         praise.number_of_hearts = praise.number_of_hearts+1
         praise.save()
         return redirect('/')
+
+    def post(self, request):
+        data = request.POST.copy()
+        to = data['to']
+        by = data['by']
+        des = data['description']
+        Praise.objects.create(to=to, by=by, description=des)
+        return render(
+            request,
+            self.template_name
+        )
+

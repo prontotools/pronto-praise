@@ -112,3 +112,12 @@ class AddHeartView(TestCase):
         praise = Praise.objects.get(id=praise.id)
 
         self.assertEqual(1, praise.number_of_hearts)
+
+    def test_praise_add_view_should_add_new_praise(self):
+        data = {
+            'to': 'Por',
+            'by': 'Poon',
+            'description': 'Think'
+        }
+        response = self.client.post(reverse('praise_add'), data=data)
+        self.assertEquals(response.status_code, 200)
