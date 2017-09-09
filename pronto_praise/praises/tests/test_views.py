@@ -60,6 +60,10 @@ class PraiseListView(TestCase):
             '          Praise Someone\n      </a>'
         self.assertContains(response, expected, status_code=200)
 
+    def test_praise_list_view_should_have_sort_button(self):
+        response = self.client.get(reverse('praise_list'))
+        expected = '<a href= "/?banana=1" style="display:inline-block" class="ui secondary button">Sort</a>'
+        self.assertContains(response, expected, status_code=200)
 
 class PraiseAddView(TestCase):
     def test_praise_add_view_should_be_accessible(self):
