@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
+from praises.models import Praise
+
 
 class PraiseListView(TestCase):
     def test_praise_list_view_should_be_accessible(self):
@@ -92,3 +94,21 @@ class PraiseAddView(TestCase):
 
         expected = '<button class="ui button" type="submit">Submit</button>'
         self.assertContains(response, expected, status_code=200)
+
+
+class AddHeartView(TestCase):
+    def test_add_heart_should_increase_number_of_heart(self):
+        praise = Praise.objects.create(
+                to="test",
+                by="bytest",
+                description="hearttest"
+            )
+
+        self.assertEqual(0, praise.number_of_hearts)
+        response = self.client.get(
+            reverse('praise_add_heart', kwargs={'praise_id': praise.id})
+        )
+        self.assertEqual(response.status_code, 302)
+        praise = Praise.objects.get(id=praise.id)
+
+        self.assertEqual(1, praise.number_of_hearts)
