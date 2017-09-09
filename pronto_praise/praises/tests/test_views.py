@@ -105,4 +105,3 @@ class AddHeartView(TestCase):
         praise = Praise.objects.get(id=praise.id)
 
         self.assertEqual(1, praise.number_of_hearts)
-        

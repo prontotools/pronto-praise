@@ -30,4 +30,3 @@ class PraiseAddHeart(TemplateView):
         praise.number_of_hearts = praise.number_of_hearts+1
         praise.save()
         return redirect('/')
-    
