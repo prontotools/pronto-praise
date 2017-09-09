@@ -1,48 +1,156 @@
 {% extends "base.html" %}
+{% load emoji_tags %}
+
 {% block body %}
+<style>
+  /* Most of the heart's CSS came from the Shapes of CSS  */
+/* https://css-tricks.com/examples/ShapesOfCSS/          */
+/* .heart {
+  position: relative;
+  width: 100px;
+  height: 90px;
+  margin: 30px;
+  
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  -moz-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  -o-transform-origin: center center;
+  transition: all 1s; 
+} */
+/* .heart.css {  
+  -webkit-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -ms-animation-delay:1s;
+  -o-animation-delay:1s;
+  animation-dely:1s;
+} */
+.heart.animated {
+  -webkit-animation: 1600ms pulsate infinite alternate ease-in-out;
+  -moz-animation: 1600ms pulsate infinite alternate ease-in-out;
+  -ms-animation: 1600ms pulsate infinite alternate ease-in-out;
+  -o-animation: 1600ms pulsate infinite alternate ease-in-out;
+  animation: 1600ms pulsate infinite alternate ease-in-out;
+}
+/* .heart:before,
+.heart:after { 
+  position: absolute; 
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: red;
+  -moz-border-radius: 50px 50px 0 0;
+  border-radius: 50px 50px 0 0;
+  -webkit-transform: rotate(-45deg);
+     -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: 0 100%;
+     -moz-transform-origin: 0 100%;
+      -ms-transform-origin: 0 100%;
+       -o-transform-origin: 0 100%;
+          transform-origin: 0 100%;
+}
+.heart:after {
+  left: 0;
+  -webkit-transform: rotate(45deg);
+     -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+     -moz-transform-origin: 100% 100%;
+      -ms-transform-origin: 100% 100%;
+       -o-transform-origin: 100% 100%;
+          transform-origin :100% 100%;
+}
+.heart.css:hover {
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  -ms-transform: scale(2);
+  -o-transform: scale(2);
+  transform: scale(2);
+  -webkit-animation:'';
+  -moz-animation:none;
+  -ms-animation:'';
+  -o-animation:'';
+  animation:'';
+}
+*/
+@keyframes pulsate {
+  0% { transform: scale(1); }
+  50% { transform: scale(10); }
+  100% { transform: scale(1); }
+}
+@-webkit-keyframes pulsate {
+  0% { -webkit-transform: scale(1); }
+  50% { -webkit-transform: scale(10); }
+  100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes pulsate {
+  0% { -moz-transform: scale(1); }
+  50% { -moz-transform: scale(10); }
+  100% { -moz-transform: scale(1); }  
+}
+@-ms-keyframes pulsate {
+  0% { -ms-transform: scale(1); }
+  50% { -ms-transform: scale(10); }
+  100% { -ms-transform: scale(1); }  
+}
+@-o-keyframes pulsate {
+  0% { -o-transform: scale(1); }
+  50% { -o-transform: scale(10); }
+  100% { -o-transform: scale(1); }  
+} 
+</style>
+{% spaceless %}
   <div class="ui main container">
+      <a href="/add" class="ui basic button  right floated" >
+          <i class="icon plus"></i>
+          Praise Someone
+      </a>
     <h1 class="ui header">Praise</h1>
+    <!-- thohirah create button yoo -->
     <div class="ui grid">
-    {% spaceless %}
-      <div class="four wide column">
-        <div class="praise">
-          <div class="praise-body">
-            <h3>Mils</h3>
-            <div>
-              <p>Listen and speak with care!</p>
-            </div>
-            <div class="ui items">
-              <div class="item">
-                <div class="extra">
-                <div class="ui right floated"><a href="#"><i class="heart icon"></i></a>+ 0</div>
+        {% for praise in praises %}
+          <div class="four wide column">
+              <div class="praise">
+                <div class="praise-body">
+                  <h3>{{ praise.to }}</h3>
+                  <div class="ui header icon">
+                      {% autoescape off %}
+                      {{ praise.description|emoji_replace }}
+                      {% endautoescape %}
+                  </div>
+                  <div class="ui items">
+                    <div class="item">
+                      <div class="extra">
+                      <div class="ui right floated"><a href="#"><i class="heart icon" data-id="{{praise.id}}"></i></a>+ {{ praise.number_of_hearts }}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <strong>{{ praise.by }}</strong><br />{{ praise.created|date:"N j, o" }}
               </div>
             </div>
-          </div>
-          <strong>zkan</strong><br />Sept 1, 2016
-        </div>
-      </div>
-
-      <div class="four wide column">
-        <div class="praise">
-          <div class="praise-body">
-            <h3>P'Kan</h3>
-            <div>
-              <p>Cool and handsome!</p>
-            </div>
-            <div class="ui items">
-              <div class="item">
-                <div class="extra">
-                <div class="ui right floated"><a href="#"><i class="heart icon"></i></a>+ 2</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <strong>Mils</strong><br />Sept 6, 2016
-        </div>
-      </div>
-    {% endspaceless %}
-    </div>
-
+        {% endfor %} 
   </div>
+<script>
+  $(".heart").click(function() {
+      $(this).addClass("animated")
+      var id = $(this).data("id")
+      setTimeout(function(){
+        window.location = "/"+id+"/heart/"
+      }, 2000)
+    }
+  )
+</script>
+  {% endspaceless %}
 {% endblock %}
