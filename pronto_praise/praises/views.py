@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-
 from praises.models import Praise
 
 
@@ -8,9 +7,11 @@ class PraiseListView(TemplateView):
     template_name = 'praises.html'
 
     def get(self, request):
+        praises = Praise.objects.all()
         return render(
             request,
-            self.template_name
+            self.template_name,
+            {"praises": praises}
         )
 
 

@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-
 from praises.models import Praise
 
 
@@ -36,31 +35,23 @@ class PraiseListView(TestCase):
         self.assertContains(response, expected, status_code=200)
 
     def test_praise_list_view_should_have_praise_with_info_as_expected(self):
+        Praise.objects.create(
+            to='chang',
+            by='o',
+            description='GGwp:angry:',
+            number_of_hearts=1000
+        )
         response = self.client.get(reverse('praise_list'))
 
-        expected = '<div class="praise"><div class="praise-body">' \
-            '<h3>Mils</h3>' \
-            '<div class="ui header icon">' \
-            '<img src="/static/emoji/img/angry.png" ' \
-            'alt="angry" title="angry" class="emoji"></div>' \
-            '<div><p>Listen and speak with care!</p></div>' \
-            '<div class="ui items"><div class="item"><div class="extra">' \
-            '<div class="ui right floated"><a href="#">' \
-            '<i class="heart icon"></i></a>+ 0</div></div></div></div></div>' \
-            '<strong>zkan</strong><br />Sept 1, 2016'
-        self.assertContains(response, expected, status_code=200)
-
-        expected = '<div class="praise"><div class="praise-body">' \
-            '<h3>P\'Kan</h3>' \
-            '<div class="ui header icon">' \
-            '<img src="/static/emoji/img/smile.png" ' \
-            'alt="smile" title="smile" class="emoji"></div>' \
-            '<div><p>Cool and handsome!</p></div>' \
-            '<div class="ui items"><div class="item"><div class="extra">' \
-            '<div class="ui right floated"><a href="#">' \
-            '<i class="heart icon"></i></a>+ 2</div></div></div></div></div>' \
-            '<strong>Mils</strong><br />Sept 6, 2016'
-        self.assertContains(response, expected, status_code=200)
+        self.assertContains(response, 'chang', status_code=200)
+        self.assertContains(response, 'o', status_code=200)
+        self.assertContains(response, 'GGwp', status_code=200)
+        self.assertContains(response, 1000, status_code=200)
+        self.assertContains(
+            response,
+            '<img src="/static/emoji/img/angry.png"',
+            status_code=200
+        )
 
     def test_praise_list_view_should_have_add_button(self):
         response = self.client.get(reverse('praise_list'))

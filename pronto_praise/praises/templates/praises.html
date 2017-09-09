@@ -119,55 +119,28 @@
     <h1 class="ui header">Praise</h1>
     <!-- thohirah create button yoo -->
     <div class="ui grid">
-      <div class="four wide column">
-        <div class="praise">
-          <div class="praise-body">
-            <h3>Mils</h3>
-            <div class="ui header icon">
-                {% autoescape off %}
-                {{ ':angry:'|emoji_replace }}
-                {% endautoescape %}
-            </div>
-            <div>
-                <p>Listen and speak with care!</p>
-            </div>
-            <div class="ui items">
-              <div class="item">
-                <div class="extra">
-                <div class="ui right floated"><a href="#"><i class="heart icon"></i></a>+ 0</div>
+        {% for praise in praises %}
+          <div class="four wide column">
+              <div class="praise">
+                <div class="praise-body">
+                  <h3>{{ praise.to }}</h3>
+                  <div class="ui header icon">
+                      {% autoescape off %}
+                      {{ praise.description|emoji_replace }}
+                      {% endautoescape %}
+                  </div>
+                  <div class="ui items">
+                    <div class="item">
+                      <div class="extra">
+                      <div class="ui right floated"><a href="#"><i class="heart icon"></i></a>+ {{ praise.number_of_hearts }}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <strong>{{ praise.by }}</strong><br />{{ praise.created|date:"N j, o" }}
               </div>
             </div>
-          </div>
-          <strong>zkan</strong><br />Sept 1, 2016
-        </div>
-      </div>
-
-      <div class="four wide column">
-        <div class="praise">
-          <div class="praise-body">
-            <h3>P'Kan</h3>
-            <div class="ui header icon">
-                {% autoescape off %}
-                {{ ':smile:'|emoji_replace }}
-                {% endautoescape %}
-            </div>
-            <div>
-                <p>Cool and handsome!</p>
-            </div>
-            <div class="ui items">
-              <div class="item">
-                <div class="extra">
-                <div class="ui right floated"><a href="#"><i class="heart icon"></i></a>+ 2</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <strong>Mils</strong><br />Sept 6, 2016
-        </div>
-      </div>
-    </div>
-    
+        {% endfor %} 
   </div>
 <script>
   $(".heart").click(function() {
